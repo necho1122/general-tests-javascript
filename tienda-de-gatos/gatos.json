@@ -1,0 +1,36 @@
+{
+    "gatos":
+    [
+        {
+          "id": 1,
+          "titulo": "Gato Encantador",
+          "descripcion": "Un gato adorable que te robará el corazón.",
+          "imagen": "https://placekitten.com/200/300"
+        },
+        {
+          "id": 2,
+          "titulo": "Explorador Felino",
+          "descripcion": "Este gato aventurero está listo para descubrir el mundo.",
+          "imagen": "https://placekitten.com/201/300"
+        },
+        {
+          "id": 3,
+          "titulo": "Gato Soñador",
+          "descripcion": "Un gato que parece estar perdido en sus propios pensamientos.",
+          "imagen": "https://placekitten.com/202/300"
+        },
+        {
+          "id": 4,
+          "titulo": "Gato Curioso",
+          "descripcion": "Este gato siempre está investigando todo a su alrededor.",
+          "imagen": "https://placekitten.com/203/300"
+        },
+        {
+          "id": 5,
+          "titulo": "Gato Juguetón",
+          "descripcion": "Diviértete con este gato travieso y lleno de energía.",
+          "imagen": "https://placekitten.com/204/300"
+        }
+      ]
+      
+}
