@@ -1,77 +1,80 @@
-import './style.css';
-import gatos from './gatos.json';
+import "./style.css";
+import gatos from "./gatos.json";
 
-document.addEventListener('DOMContentLoaded', () => {
-	getGatos();
+document.addEventListener("DOMContentLoaded", () => {
+	renderGatos();
 });
 
-const gatoIds = [];
+function renderGatos() {
+	const app = document.querySelector("#app");
+	app.innerHTML = `
+    <button id="toggleCartButton">Mostrar/Ocultar Carrito</button>
+    <h1>Tienda de gatos en adopción</h1>
+    <div id="cart" style="display: none;"><button id="closeCart">X</button></div>
+    <div id="my-test">
+      <div class="cats-container">
+        <ul id="gatos-list">
+          ${gatos.gatos.map(renderGato).join("")}
+        </ul>
+      </div>
+    </div>
+  `;
 
-function getGatos() {
-	// Obtener todos los botones "Get Cat"
-	const buttons = document.querySelectorAll('li[data-id]');
-
-	// Agregar un controlador de eventos "click" a cada botón
-	buttons.forEach((button) => {
-		button.addEventListener('click', () => {
-			// Obtener el ID del gato del atributo "data-id" del botón
-			const gatoId = parseInt(button.getAttribute('data-id'));
-			console.log(`ID del gato: ${gatoId}`);
-			// Aquí puedes hacer lo que quieras con el ID del gato
-			gatoIds.push(gatoId);
-
-      let objetosEncontrados = gatos.gatos.filter(function(item) {
-        return gatoIds.includes(item.id);
-      });
-      
-      // Verifica si se encontraron objetos
-      if (objetosEncontrados.length > 0) {
-        // Itera sobre los objetos encontrados y accede a sus propiedades
-        objetosEncontrados.forEach(function(objeto) {
-          const cart = document.querySelector('#cart');
-          cart.innerHTML +=
-          `<h5>Articulo: ${objeto.titulo}</h5>`;
-          /*console.log("ID:", objeto.id);
-          console.log("Título:", objeto.titulo);
-          console.log("Descripción:", objeto.descripcion);
-          console.log("Imagen:", objeto.imagen);
-          console.log("---------------------");*/
-        });
-      } else {
-        console.log("Ningún objeto encontrado con los IDs:", gatoIds);
-      }
-
-      return objetosEncontrados;
-
-		});
-	});
+	const gatosList = document.querySelector("#gatos-list");
+	gatosList.addEventListener("click", handleGatoClick);
 }
 
-document.querySelector('#app').innerHTML = `
-<h1>Tienda de gatos</h1>
-  <div id="cart"></div>
-  <div id="my-test"></div>
-`;
+function renderGato(gato) {
+	return `
+    <li data-id="${gato.id}">
+      <img src='${gato.imagen}'>
+      <h3>${gato.titulo}:</h3>
+      <p>${gato.descripcion}</p>
+      <button type="button">Adoptar</button>
+    </li>
+  `;
+}
 
-const element = document.querySelector('#my-test');
+function handleGatoClick(event) {
+	const target = event.target;
+	if (target.tagName === "BUTTON") {
+		const listItem = target.closest("li");
+		const gatoId = Number.parseInt(listItem.getAttribute("data-id"));
+		const cart = document.querySelector("#cart");
+		addToCart(cart, gatoId);
+	}
+}
 
-element.innerHTML = `
-    <div>
-        <h2>Gatos</h2>
-        <ul>
-            ${gatos.gatos
-							.map(
-								(gato) =>
-									`<li data-id="${gato.id}">
-                  <h3>${gato.titulo}:</h3>
-                  <p>${gato.descripcion}</p>
-                  <img src='${gato.imagen}'>
-                  <button onclick="${
-										getGatos()
-									}" type="button">Get Cat</button>
-                  </li>`
-							)
-							.join('')}
-        </ul>
-    </div>
-`;
+function addToCart(cart, gatoId) {
+	const gato = gatos.gatos.find((gato) => gato.id === gatoId);
+	if (gato) {
+		const cartItem = document.createElement("div");
+		cartItem.innerHTML = `
+      <div class="gato-in-cart">
+        <h5>Gato:</h5>
+        <p>${gato.titulo}</p>
+        <p>Serial: ${(Math.random() * 100000000).toFixed(0)}</p>
+        <img src="${gato.imagen}">
+      </div>
+    `;
+		cart.appendChild(cartItem);
+	}
+}
+
+document.addEventListener("DOMContentLoaded", (event) => {
+	document.getElementById("toggleCartButton").addEventListener("click", () => {
+		const cart = document.getElementById("cart");
+		if (cart.style.display === "none") {
+			cart.style.display = "block";
+		} else {
+			cart.style.display = "none";
+		}
+	});
+});
+
+document.addEventListener("DOMContentLoaded", (event) => {
+	document.getElementById("closeCart").addEventListener("click", () => {
+		const cart = document.getElementById("cart");
+		cart.style.display = "none";
+	});
+});
