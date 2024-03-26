@@ -4,6 +4,16 @@
 
 Este proyecto es una tienda de gatos en adopción, en la que se pueden ver los gatos disponibles y solicitar la adopción de uno de ellos. Se agregan a un carrito de adopción y se pueden ver los detalles de cada gato. La intención es el desarrollo de una aplicación web que permita a los usuarios adoptar gatos de una manera sencilla y rápida. Por otro lado, ver que tan desafiante puede ser el desarrollo de una aplicación web con funcionalidades básicas (html, css, JavaScript).
 
+## Imágenes
+
+- Pagina principal
+
+![Página principal](https://live.staticflickr.com/65535/53612912343_70159e2f0a_z.jpg)
+
+- Carrito de adopción
+
+![Carrito de adopción](https://live.staticflickr.com/65535/53613067464_e5e73b7747_z.jpg)
+
 ## Funcionalidades
 
 - Ver gatos disponibles

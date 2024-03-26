@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function renderGatos() {
 	const app = document.querySelector("#app");
 	app.innerHTML = `
-    <button id="toggleCartButton">Mostrar/Ocultar Carrito</button>
+    <button id="toggleCartButton"><img src="./public/cart-adopt.svg" alt="cart"/></button>
     <h1>Tienda de gatos en adopción</h1>
     <div id="cart" style="display: none;"><button id="closeCart">X</button></div>
     <div id="my-test">
